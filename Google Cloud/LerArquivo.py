@@ -4,7 +4,7 @@ import pandas as pd
 import json
 from pandas import json_normalize
 
-google_credencial = service_account.Credentials.from_service_account_file("C:\\Users\\felip\\OneDrive\\Cursos e Certificados\\Data Scientis\\GoogleCloud\\formidable-app-401523-2b7f82d9dec0.json")
+google_credencial = service_account.Credentials.from_service_account_file("C:\\Users\\felip\\OneDrive\\Cursos e Certificados\\Data Scientis\\GoogleCloud\\credencial.json")
 bucket_name = 'airflow_pipelines'
 json_file_name = 'pokemon_file.json'
 

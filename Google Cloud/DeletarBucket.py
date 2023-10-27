@@ -1,7 +1,7 @@
 from google.oauth2 import service_account
 from google.cloud import storage
 
-google_credencial = service_account.Credentials.from_service_account_file("C:\\Users\\felip\\OneDrive\\Cursos e Certificados\\Data Scientis\\GoogleCloud\\formidable-app-401523-2b7f82d9dec0.json")
+google_credencial = service_account.Credentials.from_service_account_file("C:\\Users\\felip\\OneDrive\\Cursos e Certificados\\Data Scientis\\GoogleCloud\\credencial.json")
 
 def delete_bucket(bucket_name):
 
