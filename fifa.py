@@ -130,34 +130,4 @@ def jogadores():
 jogadores_data = jogadores()
 
 
-file_path_nacao = "nacao_file.json"
 
-with open(file_path_nacao, 'w') as outfile:
-    print("Salvando arquivo em: ", file_path_nacao)
-    json.dump(nacao_data, outfile)
-
-outfile.close()
-
-file_path_liga = "liga_file.json"
-
-with open(file_path_liga, 'w') as outfile:
-    print("Salvando arquivo em: ", file_path_liga)
-    json.dump(liga_data, outfile)
-
-outfile.close()
-
-file_path_clube = "clube_file.json"
-
-with open(file_path_clube, 'w') as outfile:
-    print("Salvando arquivo em: ", file_path_clube)
-    json.dump(clube_data, outfile)
-
-outfile.close()
-
-file_path_jogador = "jogador_file.json"
-
-with open(file_path_jogador, 'w') as outfile:
-    print("Salvando arquivo em: ", file_path_jogador)
-    json.dump(jogadores_data, outfile)
-
-outfile.close()
