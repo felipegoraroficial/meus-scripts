@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "formidable-app-401523",
+  "private_key_id": "2b7f82d9dec0479d0246be5343dd82390311ed98",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDb1BgoHaP7Ymx7\nwTlzVzdNK42D/CO/tgeohaxn7Lq3xXSOyGU88ju0v5XMiMlfKIkdtoJRI3VwBWq4\n4BfQq60ywpPJoBjWhAg+F7NaxdI8QEW5i1BKsytMtCpMF2Rlsvu7TRHBwUiHRSUR\nGoD9f3EVhF4xe4ozN7xemzk1OUBkKSVChkTi67W9NhRDIsen5sPOaSp18bXTxENh\nEBiGq8twCCu0vndn81kTdhCy7NRWx9QfFSYhmUG8AZeQJLiqhdREd1qArXNGCsbe\niJPJIofZwTBjrhHUaLCfjatdqG/t5FsPMp/TR7ae5yKKuA2a9xk5AY+tdmrZaBNo\nJGP/Rif3AgMBAAECggEAQfTjoJmwG1tfIEyL38MB2TohlkG/OiS0LIia/32EUmJA\nxBx1X7FwX52CJSG/hbkkVtFtTUn90PQXHsxB6P6xk0LVU9Ag07A+xt6Wljw3hZNl\nODQIDbmvWq7N6BG2slre88Y+dyt2hvukkPqqTCUCOYoDNwaRoydscdhR9Fmuq74s\nCAoRf29xD3OryQV6gjpG9zKQJXhAINLgGvnfFld8dZDTfleOA75nROEiXmq3Tc9p\nRXZwkV7G9wTesHGygRMe3nKUuShl83IlOCiPZljlpuLKleBPrAJLeYOBjN2w/qsu\naLjrORzT5Tp6b/B5ks9d44FBaaneWW7G5fWe+GFtXQKBgQD8pvTMnFlKgEln6OhW\ntEQOVUt1jpqlao0KiHrMTwPOlF51wFeczgJq6Ap3SXWWH4W+JIlWxzlZW0LplycB\n85Og3Tgh57C4X2tIEhHh/VqLCs/1GSzFvQaJn00J1rjQOuVh8LK1VbEAh6Cjnn7H\nK2Jm4bWuUmprdEO9MNHuvHizOwKBgQDevctEdAxa9y9ajSEbE0z518vy9wyFtILl\nbALb0jr5r+9L+jvSQj1JcUTMnX7MNthiFvUbjKmoAFqedn1Yu61JA5fkPn2BrXzZ\nd0NsvNnbLtkMkewhgiWChVcEMY98iwgf3yANCu+Sm1Xw09PCS5wpFTdjrxFwfn6w\n762USrTadQKBgQCxs4A0tbc75lU7B5769Nl1N1rWuVFeDT5cbTfpoZ2s28BAk+NL\nf75FkSVjV0CkMVGxNiN+7KsShVTf1RdzkO2B1HaZqksqsrpTO5pmV/sqFpXD70wF\nXHlPrMLTq7nbg8E4jMI1NqtDEyHSUzUaQxJ4CELv9DmzkFfgpojRoLBIZwKBgQDS\nCJnx1JQJ+ugWNNow08RUG17fnoGaWprLh0wyyEyAQZweQrnCDGAKLtq3LxPvsQ/d\nftRlw//+wUayAf00fNRr8w15Vku2ykbeMQ3NLU8o1UYqCjdlaXnBV8az15/7yoZA\nt39bjSJXVk51pukZX37DZpQyVVTWhREl+vvsx30+OQKBgQCq/bITsLR1M1n+6OJR\nNTGDyjl8NbDYEdyjbZLD0OvmrzDAfZ0KJfH+zgmRcVYnqCZsOkiqZiXvnCH0N3cP\nZBPGhsBXYVzGH6YjDomhhAFH2ojUWMEF1yRodoIS887rKPNU3QDBYSakmDYdBdE7\nWIQ6Zi9n1/hQdgZSQkF1aEk+lQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "airflow@formidable-app-401523.iam.gserviceaccount.com",
+  "client_id": "101766842910022982989",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/airflow%40formidable-app-401523.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
