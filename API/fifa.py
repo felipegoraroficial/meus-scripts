@@ -8,7 +8,7 @@ def nacao():
 
     nacao_list = list()
 
-    for i in range(1,11):
+    for i in range(1,10):
 
         url = f"https://futdb.app/api/nations?page={i}" 
         
@@ -37,7 +37,7 @@ def liga():
 
     liga_list = list()
 
-    for i in range(1,4):
+    for i in range(1,3):
 
         url = f"https://futdb.app/api/leagues?page={i}" 
         
@@ -68,7 +68,7 @@ def clube():
 
     clube_list = list()
 
-    for i in range(1,38):
+    for i in range(1,37):
 
         url = f"https://futdb.app/api/clubs?page={i}" 
         
@@ -98,7 +98,7 @@ def jogadores():
 
     jogadores_list = list()
 
-    for i in range(1,929):
+    for i in range(1,928):
 
         url = f"https://futdb.app/api/players?page={i}" 
 
@@ -117,9 +117,20 @@ def jogadores():
                 "ID Nacionalidade": item['nation'],
                 "Nome": item['name'],
                 "Idade": item['age'],
+                "Data Nascimento": item['birthDate'],
                 "Posição": item['position'],
                 "Overall": item['rating'],
-                "Pé Bom": item['foot']
+                "Pé Bom": item['foot'],
+                "Overall": item['rating'],
+                "Altura": item['height'],
+                "Peso": item['weight'],
+                "Genero": item['gender'],
+                "Chute": item['shooting'],
+                "Passe": item['passing'],
+                "Drible": item['dribbling'],
+                "Defesa": item['defending'],
+                "Fisico": item['physicality'],
+                "Atributo de Goleiro": item['goalkeeperAttributes'],
                 }
             
             jogadores_list.append(infos)
@@ -129,5 +140,38 @@ def jogadores():
     return df
 jogadores_data = jogadores()
 
+def tratar_dados(jogadores_data,clube_data,liga_data,nacao_data):
 
+    # Mesclagem encadeada dos dataframes
+    fifa = jogadores.merge(clube[['ID Clube', 'Clube']], left_on='ID Clube', right_on='ID Clube', how='left')\
+                .merge(liga[['ID Liga', 'Liga', 'Genero']], left_on='ID Liga', right_on='ID Liga', how='left')\
+                .rename(columns={'Genero_x': 'Genero', 'Genero_y': 'Genero Liga'})\
+                .merge(nacao[['ID Nacionalidade', 'Nacionalidade']], left_on='ID Nacionalidade', right_on='ID Nacionalidade', how='left')
 
+    # Preenchimento de valores NaN
+    fifa.fillna({'Genero Liga': 'Não se Aplica', 'Atributo de Goleiro': 0, 'IMC': 0}, inplace=True)
+
+    # Conversão de tipos
+    fifa['Atributo de Goleiro'] = fifa['Atributo de Goleiro'].astype(int)
+    fifa['Altura'] = fifa['Altura'] / 100
+
+    # Cálculo do IMC
+    fifa['IMC'] = fifa['Peso'] / (fifa['Altura'] ** 2)
+
+    # Classificação do IMC
+    def classificar_imc(imc):
+        if imc == 0:
+            return "Não se Aplica"
+        elif 0 < imc < 18.5:
+            return "Abaixo do Peso"
+        elif 18.5 <= imc < 24.9:
+            return "Peso Normal"
+        elif 24.9 <= imc < 29.9:
+            return "Sobrepeso"
+        else:
+            return "Obeso"
+
+    fifa['Classificacao IMC'] = fifa['IMC'].apply(classificar_imc)
+
+    return fifa
+fifa = tratar_dados(jogadores_data,clube_data,liga_data,nacao_data)
