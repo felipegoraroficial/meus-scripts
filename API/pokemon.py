@@ -1,12 +1,12 @@
 import requests
 import json
+from google.cloud import storage
 
 
 def extract_pokemon():
 
     url = "https://pokeapi.co/api/v2/pokemon/"
-    pokemon_list = list()
-
+    pokemon_list = {'pokemon_list': list()}
 
     while url != None:
         payload={}
@@ -27,13 +27,11 @@ def extract_pokemon():
                 "is_default": response_pokemon["is_default"]
             }
 
-            pokemon_list.append(infos)
+            pokemon_list['pokemon_list'].append(infos)
             print(response_pokemon["id"])
 
-    file_path = "pokemon_file.json"
-
-    with open(file_path, 'w') as outfile:
-        print("Salvando arquivo em: ", file_path)
-        json.dump(pokemon_list, outfile)
-
-    outfile.close()
+    bucket_name = "airflow-pipelines"
+    bucket = storage.Client().get_bucket(bucket_name)
+    blob = bucket.blob("pokemon_file.json")
+    print(f"Salvando arquivo em: {bucket_name}")
+    blob.upload_from_string(data=json.dumps(pokemon_list), content_type='application/json')  
