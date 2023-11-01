@@ -1,9 +1,15 @@
 import requests
 import json
 from google.cloud import storage
+from google.oauth2 import service_account
+
+google_credencial = service_account.Credentials.from_service_account_file("C:\\Users\\felip\\OneDrive\\Cursos e Certificados\\Data Scientis\\GoogleCloud\\credencial.json")
+
 
 
 def extract_pokemon():
+
+    
 
     url = "https://pokeapi.co/api/v2/pokemon/"
     pokemon_list = {'pokemon_list': list()}
@@ -30,8 +36,12 @@ def extract_pokemon():
             pokemon_list['pokemon_list'].append(infos)
             print(response_pokemon["id"])
 
-    bucket_name = "airflow-pipelines"
-    bucket = storage.Client().get_bucket(bucket_name)
-    blob = bucket.blob("pokemon_file.json")
-    print(f"Salvando arquivo em: {bucket_name}")
-    blob.upload_from_string(data=json.dumps(pokemon_list), content_type='application/json')  
+            return pokemon_list
+        
+pokemon_list = extract_pokemon()
+
+bucket_name = "airflow_pipelines"
+bucket = storage.Client(credentials=google_credencial).get_bucket(bucket_name)
+blob = bucket.blob("pokemon_file.json")
+print(f"Salvando arquivo em: {bucket_name}")
+blob.upload_from_string(data=json.dumps(pokemon_list), content_type='application/json')

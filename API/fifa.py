@@ -1,8 +1,12 @@
 import requests
 import json
 import pandas as pd
+from google.cloud import storage
+from google.oauth2 import service_account
 
 api_key = "7b1b94b8-78ca-4f43-b31c-9b3f4199a1a4" 
+google_credencial = service_account.Credentials.from_service_account_file("C:\\Users\\felip\\OneDrive\\Cursos e Certificados\\Data Scientis\\GoogleCloud\\credencial.json")
+
 
 def nacao():
 
@@ -175,3 +179,9 @@ def tratar_dados(jogadores_data,clube_data,liga_data,nacao_data):
 
     return fifa
 fifa = tratar_dados(jogadores_data,clube_data,liga_data,nacao_data)
+
+bucket_name = "airflow_pipelines"
+bucket = storage.Client(credentials=google_credencial).get_bucket(bucket_name)
+blob = bucket.blob("fifa_file.json")
+print(f"Salvando arquivo em: {bucket_name}")
+blob.upload_from_string(data=json.dumps(fifa), content_type='application/json')
