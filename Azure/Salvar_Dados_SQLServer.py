@@ -17,7 +17,7 @@ data = {
 }
 df = pd.DataFrame(data)
 
-quer_delete = 'DELETE FROM nome-da-tabela WHERE COLUNA_1 = "uma variavel"'
+quer_delete = 'DELETE FROM nome-da-tabela WHERE COLUNA_1 = "uma variavel";'
 cur.execute(quer_delete)
 
 tabela = 'nome-da-tabela'
