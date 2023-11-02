@@ -1,18 +1,16 @@
 import requests
 import json
 import pandas as pd
-from google.cloud import storage
-from google.oauth2 import service_account
+
 
 api_key = "7b1b94b8-78ca-4f43-b31c-9b3f4199a1a4" 
-google_credencial = service_account.Credentials.from_service_account_file("C:\\Users\\felip\\OneDrive\\Cursos e Certificados\\Data Scientis\\GoogleCloud\\credencial.json")
 
 
 def nacao():
 
     nacao_list = list()
 
-    for i in range(1,10):
+    for i in range(1,12):
 
         url = f"https://futdb.app/api/nations?page={i}" 
         
@@ -41,7 +39,7 @@ def liga():
 
     liga_list = list()
 
-    for i in range(1,3):
+    for i in range(1,5):
 
         url = f"https://futdb.app/api/leagues?page={i}" 
         
@@ -72,7 +70,7 @@ def clube():
 
     clube_list = list()
 
-    for i in range(1,37):
+    for i in range(1,39):
 
         url = f"https://futdb.app/api/clubs?page={i}" 
         
@@ -102,7 +100,7 @@ def jogadores():
 
     jogadores_list = list()
 
-    for i in range(1,928):
+    for i in range(1,929):
 
         url = f"https://futdb.app/api/players?page={i}" 
 
@@ -147,10 +145,10 @@ jogadores_data = jogadores()
 def tratar_dados(jogadores_data,clube_data,liga_data,nacao_data):
 
     # Mesclagem encadeada dos dataframes
-    fifa = jogadores.merge(clube[['ID Clube', 'Clube']], left_on='ID Clube', right_on='ID Clube', how='left')\
-                .merge(liga[['ID Liga', 'Liga', 'Genero']], left_on='ID Liga', right_on='ID Liga', how='left')\
+    fifa = jogadores_data.merge(clube_data[['ID Clube', 'Clube']], left_on='ID Clube', right_on='ID Clube', how='left')\
+                .merge(liga_data[['ID Liga', 'Liga', 'Genero']], left_on='ID Liga', right_on='ID Liga', how='left')\
                 .rename(columns={'Genero_x': 'Genero', 'Genero_y': 'Genero Liga'})\
-                .merge(nacao[['ID Nacionalidade', 'Nacionalidade']], left_on='ID Nacionalidade', right_on='ID Nacionalidade', how='left')
+                .merge(nacao_data[['ID Nacionalidade', 'Nacionalidade']], left_on='ID Nacionalidade', right_on='ID Nacionalidade', how='left')
 
     # Preenchimento de valores NaN
     fifa.fillna({'Genero Liga': 'Não se Aplica', 'Atributo de Goleiro': 0, 'IMC': 0}, inplace=True)
@@ -177,11 +175,8 @@ def tratar_dados(jogadores_data,clube_data,liga_data,nacao_data):
 
     fifa['Classificacao IMC'] = fifa['IMC'].apply(classificar_imc)
 
+
     return fifa
 fifa = tratar_dados(jogadores_data,clube_data,liga_data,nacao_data)
 
-bucket_name = "airflow_pipelines"
-bucket = storage.Client(credentials=google_credencial).get_bucket(bucket_name)
-blob = bucket.blob("fifa_file.json")
-print(f"Salvando arquivo em: {bucket_name}")
-blob.upload_from_string(data=json.dumps(fifa), content_type='application/json')
+fifa.to_excel('Data/fifa.xlsx', index=False)

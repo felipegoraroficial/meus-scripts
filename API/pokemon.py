@@ -1,4 +1,5 @@
 import requests
+import pandas as pd
 import json
 from google.cloud import storage
 from google.oauth2 import service_account
@@ -39,6 +40,9 @@ def extract_pokemon():
             return pokemon_list
         
 pokemon_list = extract_pokemon()
+
+df_pokemon = pd.DataFrame(pokemon_list)
+df_pokemon.to_json('Data/pokemon_file.json', orient='records', lines=True)
 
 bucket_name = "airflow_pipelines"
 bucket = storage.Client(credentials=google_credencial).get_bucket(bucket_name)

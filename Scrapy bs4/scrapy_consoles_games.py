@@ -78,7 +78,9 @@ def get_kabum():
 
     df = df[['Marca','Console','Preco','Lite','Oled','Joy-Con','Memoria']]
 
-    df.to_json('consoles_games.json', orient='records')
+    return df
+data_kabum = get_kabum()
 
+data_kabum.to_excel('Data/console_kabum.xlsx', index=False)
 
 
