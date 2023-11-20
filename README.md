@@ -1,12 +1,8 @@
-# Meus Scripts
+#My Scripts
+This repository contains script functions and course scripts that I have created or learned during my studies and projects. They can be useful for me or for other people who need quick and practical solutions to common programming problems.
 
-Este repositório contém funções de script e scripts de cursos que eu criei ou aprendi durante meus estudos e projetos. Eles podem ser úteis para mim ou para outras pessoas que precisam de soluções rápidas e práticas para problemas comuns de programação.
+#How to Use
+You can clone this repository to your computer or download the files individually. Each script has a comment explaining what it does, what the parameters are, the dependencies, and the expected result. You can run the scripts in your terminal or in an Integrated Development Environment (IDE) of your choice.
 
-## Como usar
-
-Você pode clonar este repositório para o seu computador ou baixar os arquivos individualmente. Cada script tem um comentário explicando o que ele faz, quais são os parâmetros, as dependências e o resultado esperado. Você pode executar os scripts no seu terminal ou em um ambiente de desenvolvimento integrado (IDE) de sua preferência.
-
-## Como contribuir
-
-Se você quiser contribuir com este repositório, sinta-se à vontade para enviar uma solicitação de pull ou abrir uma issue. Eu ficarei feliz em receber feedback, sugestões, correções ou novas funções de script. Por favor, siga as boas práticas de codificação e documentação, e respeite o código de conduta do GitHub.
-
+#How to Contribute
+If you would like to contribute to this repository, feel free to send a pull request or open an issue. I will be happy to receive feedback, suggestions, corrections, or new script functions. Please follow good coding and documentation practices, and respect GitHub's code of conduct.
