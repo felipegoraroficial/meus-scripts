@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+from google.cloud import storage
 import json
 import pandas as pd
 import numpy as np
@@ -52,11 +53,24 @@ def get_data():
                 'imagem': imagem
             })
 
-    # Transforme a lista 'list_todos' em JSON e salve em um arquivo
-    with open('list_todos.json', 'w') as f:
-        json.dump(list_todos, f)
+    # Salvar o arquivo JSON no Google Cloud Storage
+    bucket_name = "lakehouse_13"
+    folder_name = "raw/"
+    file_name = "magalu-nintendo.json"
+    json_data = json.dumps(list_todos)
+
+    # Credenciais de autenticação do Google Cloud Storage
+    client = storage.Client.from_service_account_json('/home/fececa/scrapy-project-415116-fd70d3d10223.json')
+    bucket = client.get_bucket(bucket_name)
+    blob = bucket.blob(folder_name + file_name)  # Aqui é onde especificamos o caminho do arquivo dentro da pasta
+    blob.upload_from_string(json_data)
 
     return resposta.status_code, list_todos
 
 # Chame a função get_data() e obtenha o status do request e a lista 'list_todos'
 status_code, list_todos = get_data()
+
+# Verifique se o status do request é 200
+assert status_code == 200, "O status do request não é 200"
+# Verifique se a lista 'list_todos' não está vazia
+assert list_todos, "A lista 'list_todos' está vazia"
